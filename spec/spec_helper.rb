@@ -14,7 +14,12 @@
 # users commonly want.
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
+require 'capybara'
+require 'capybara/dsl'
+require 'capybara/rspec'
+
 RSpec.configure do |config|
+  config.include Capybara::DSL
 # The settings below are suggested to provide a good initial experience
 # with RSpec, but feel free to customize to your heart's content.
 =begin
@@ -76,3 +81,12 @@ RSpec.configure do |config|
   end
 =end
 end
+
+Capybara.configure do |config|
+  #config.run_server = false
+  config.default_driver = :selenium  
+  config.current_driver = :selenium
+  config.app_host = "http://localhost:3000/#{@test_url}"
+end
+
+
